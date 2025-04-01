@@ -21,6 +21,10 @@ class MuseumRepository(
         return apiService.getObjectDetails(objectID)
     }
 
+    suspend fun getAllObjects(): SearchResult {
+        return apiService.getAllObjects()
+    }
+
     // Metode pentru Favorite
     suspend fun addToFavorites(artObject: ArtObject) {
         favoritesDao.insert(artObject.toFavoriteEntity())

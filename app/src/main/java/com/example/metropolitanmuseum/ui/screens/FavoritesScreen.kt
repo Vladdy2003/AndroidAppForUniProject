@@ -41,7 +41,7 @@ fun FavoritesScreen(
                 title = { Text("Favorite") },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Înapoi")
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -67,7 +67,7 @@ fun FavoritesScreen(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Nu ai obiecte favorite",
+                        text = "You don't have favorite objects",
                         style = MaterialTheme.typography.titleLarge,
                         textAlign = TextAlign.Center
                     )
@@ -146,7 +146,7 @@ fun FavoriteItem(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = artObject.artistDisplayName.takeIf { it.isNotEmpty() } ?: "Artist necunoscut",
+                    text = artObject.artistDisplayName.takeIf { it.isNotEmpty() } ?: "Unknown artist",
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
@@ -155,7 +155,7 @@ fun FavoriteItem(
             IconButton(onClick = onRemove) {
                 Icon(
                     Icons.Default.Delete,
-                    contentDescription = "Șterge de la favorite",
+                    contentDescription = "Remove from favorites",
                     tint = MaterialTheme.colorScheme.error
                 )
             }

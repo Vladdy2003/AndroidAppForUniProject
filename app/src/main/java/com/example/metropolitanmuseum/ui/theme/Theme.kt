@@ -35,7 +35,6 @@ private val LightColorScheme = lightColorScheme(
     onError = androidx.compose.ui.graphics.Color.White
 )
 
-// Schema de culori pentru tema dark
 private val DarkColorScheme = darkColorScheme(
     primary = DarkPrimary,
     onPrimary = androidx.compose.ui.graphics.Color.White,
@@ -58,22 +57,18 @@ private val DarkColorScheme = darkColorScheme(
 @Composable
 fun MetropolitanMuseumTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Opțional pentru a folosi culorile dinamice pe Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        // Folosește Dynamic Color dacă este activat și dispozitivul suportă
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        // Alege schema de culori în funcție de tema system (dark sau light)
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
 
-    // Opțional: Setarea culorii pentru bara de stare
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {

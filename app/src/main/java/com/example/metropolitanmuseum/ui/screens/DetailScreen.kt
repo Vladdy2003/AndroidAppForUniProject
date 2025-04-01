@@ -7,7 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Error
@@ -40,17 +40,17 @@ fun DetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = artObject?.title ?: "Detalii obiect") },
+                title = { Text(text = artObject?.title ?: "Object Details") },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Înapoi")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },
                 actions = {
                     IconButton(onClick = { viewModel.toggleFavorite() }) {
                         Icon(
                             if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                            contentDescription = if (isFavorite) "Șterge de la favorite" else "Adaugă la favorite",
+                            contentDescription = if (isFavorite) "Remove from favorites" else "Add to favorites",
                             tint = if (isFavorite) Color.Red else LocalContentColor.current.copy(alpha = LocalContentColor.current.alpha)
                         )
                     }
@@ -85,7 +85,7 @@ fun DetailScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = error ?: "A apărut o eroare",
+                            text = error ?: "Error",
                             color = MaterialTheme.colorScheme.error,
                             textAlign = TextAlign.Center
                         )
@@ -123,13 +123,13 @@ fun DetailScreen(
                                         .background(Color.LightGray),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    Text("Fără imagine disponibilă")
+                                    Text("No image available")
                                 }
                             }
 
                             Spacer(modifier = Modifier.height(16.dp))
 
-                            // Titlu
+                            // Title
                             Text(
                                 text = art.title,
                                 style = MaterialTheme.typography.headlineMedium
@@ -137,7 +137,7 @@ fun DetailScreen(
 
                             Spacer(modifier = Modifier.height(8.dp))
 
-                            // Informații despre artist
+                            // Info about artist
                             if (art.artistDisplayName.isNotEmpty()) {
                                 Text(
                                     text = "Artist: ${art.artistDisplayName}",
@@ -146,20 +146,20 @@ fun DetailScreen(
                                 Spacer(modifier = Modifier.height(4.dp))
                             }
 
-                            // Detalii
+                            // Detils
                             DetailItem("Departament", art.department)
-                            DetailItem("Tip de obiect", art.objectName)
-                            DetailItem("Mediu", art.medium)
-                            DetailItem("Perioadă", art.period)
-                            DetailItem("Cultură", art.culture)
-                            DetailItem("Dată", art.objectDate)
+                            DetailItem("Object type", art.objectName)
+                            DetailItem("Medium", art.medium)
+                            DetailItem("Period", art.period)
+                            DetailItem("Culture", art.culture)
+                            DetailItem("Date", art.objectDate)
 
                             Spacer(modifier = Modifier.height(16.dp))
 
-                            // Galerie imagini adiționale
+                            // Additional images
                             if (art.additionalImages.isNotEmpty()) {
                                 Text(
-                                    text = "Imagini adiționale",
+                                    text = "Additional Images",
                                     style = MaterialTheme.typography.titleLarge,
                                     modifier = Modifier.padding(vertical = 8.dp)
                                 )

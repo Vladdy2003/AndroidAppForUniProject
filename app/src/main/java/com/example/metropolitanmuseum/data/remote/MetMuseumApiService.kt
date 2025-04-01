@@ -12,4 +12,7 @@ interface MetMuseumApiService {
 
     @GET("public/collection/v1/objects/{objectID}")
     suspend fun getObjectDetails(@Path("objectID") objectID: Int): ArtObject
+
+    @GET("public/collection/v1/objects")
+    suspend fun getAllObjects(): SearchResult
 }

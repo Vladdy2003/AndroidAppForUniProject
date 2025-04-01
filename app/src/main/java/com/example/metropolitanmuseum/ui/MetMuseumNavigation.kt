@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.metropolitanmuseum.ui.screens.DetailScreen
 import com.example.metropolitanmuseum.ui.screens.FavoritesScreen
+import com.example.metropolitanmuseum.ui.screens.MainScreen
 import com.example.metropolitanmuseum.ui.screens.SearchScreen
 
 @Composable
@@ -17,8 +18,22 @@ fun MetMuseumNavigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = "search"
+        startDestination = "main"
     ) {
+        composable("main") {
+            MainScreen(
+                onNavigateToDetail = { objectId ->
+                    navController.navigate("detail/$objectId")
+                },
+                onNavigateToSearch = {
+                    navController.navigate("search")
+                },
+                onNavigateToFavorites = {
+                    navController.navigate("favorites")
+                }
+            )
+        }
+
         composable("search") {
             SearchScreen(
                 onNavigateToDetail = { objectId ->
@@ -39,7 +54,6 @@ fun MetMuseumNavigation(
             )
         }
 
-        // Bonus - FavoritesScreen
         composable("favorites") {
             FavoritesScreen(
                 onNavigateToDetail = { objectId ->

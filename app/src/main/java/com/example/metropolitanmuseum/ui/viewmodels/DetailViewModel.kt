@@ -39,7 +39,7 @@ class DetailViewModel(
             try {
                 _artObject.value = repository.getObjectDetails(objectId)
             } catch (e: Exception) {
-                _error.value = "Eroare la încărcarea detaliilor: ${e.message}"
+                _error.value = "Error while loading details: ${e.message}"
             } finally {
                 _isLoading.value = false
             }
@@ -51,7 +51,7 @@ class DetailViewModel(
             try {
                 _isFavorite.value = repository.isFavorite(objectId)
             } catch (e: Exception) {
-                // Gestionarea erorilor în acest caz poate fi mai simplă
+
             }
         }
     }
@@ -67,7 +67,7 @@ class DetailViewModel(
                 }
                 _isFavorite.value = !_isFavorite.value
             } catch (e: Exception) {
-                _error.value = "Eroare la actualizarea favoritelor: ${e.message}"
+                _error.value = "Error while updating favorites: ${e.message}"
             }
         }
     }

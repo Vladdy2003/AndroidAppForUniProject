@@ -11,7 +11,7 @@ data class FavoriteEntity(
     @PrimaryKey val objectID: Int,
     val title: String,
     val primaryImage: String,
-    val additionalImages: String, // JSON string
+    val additionalImages: String,
     val department: String,
     val objectName: String,
     val artistDisplayName: String,
